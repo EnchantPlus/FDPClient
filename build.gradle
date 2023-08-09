@@ -143,5 +143,4 @@ reobf {
         mappingType = "SEARGE"
     }
 }
-
 tasks.reobfJar.dependsOn(shadowJar)
