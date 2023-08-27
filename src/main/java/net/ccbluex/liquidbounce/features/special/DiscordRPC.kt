@@ -21,7 +21,7 @@ object DiscordRPC {
     private val ipcClient = IPCClient(1021236965108109333)
     private val timestamp = OffsetDateTime.now()
     private var running = false
-    private var fdpwebsite = "fdpinfo.github.io - "
+    private var fdpwebsite = "No Downloads for YOU :D"
 
     fun run() {
         ipcClient.setListener(object : IPCListener {
@@ -55,7 +55,7 @@ object DiscordRPC {
         val builder = RichPresence.Builder()
         val discordRPCModule = FDPClient.moduleManager[DiscordRPCModule::class.java]!!
         builder.setStartTimestamp(timestamp)
-        builder.setLargeImage(if (discordRPCModule.animated.get()){"https://skiddermc.github.io/repo/skiddermc/FDPclient/dcrpc/fdp.gif"} else {"https://skiddermc.github.io/repo/skiddermc/FDPclient/dcrpc/fdp.png"})
+        builder.setLargeImage(if (discordRPCModule.animated.get()){"https://github.com/EnchantPlus/YesClient/blob/main/assets/gradient.gif?raw=true"} else {"https://github.com/EnchantPlus/YesClient/blob/main/assets/bg_79.gif?raw=true"})
         builder.setDetails(fdpwebsite + FDPClient.CLIENT_VERSION)
         ServerUtils.getRemoteIp().also {
             val str = (if(discordRPCModule.showServerValue.get()) "Server: $it\n" else "\n") + (if(discordRPCModule.showNameValue.get()) "IGN: ${if(mc.thePlayer != null) mc.thePlayer.name else mc.session.username}\n" else "\n") + (if(discordRPCModule.showHealthValue.get()) "HP: ${mc.thePlayer.health}\n" else "\n") + (if(discordRPCModule.showModuleValue.get()) "Enable: ${FDPClient.moduleManager.modules.count{ it.state }} of ${FDPClient.moduleManager.modules.size} Modules\n" else "\n") + (if(discordRPCModule.showOtherValue.get()) "Time: ${if(mc.isSingleplayer) "SinglePlayer\n" else SessionUtils.getFormatSessionTime()} Kills: ${StatisticsUtils.getKills()} Deaths: ${StatisticsUtils.getDeaths()}\n" else "\n")
